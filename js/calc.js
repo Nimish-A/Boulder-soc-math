@@ -88,14 +88,26 @@ export function socRange(data, gym, tf) {
   return { min, max, capped, beatenBy };
 }
 
-export function overallRange(data, tf) {
-  const ranges = data.gyms.map((g) => socRange(data, g, tf)).filter((r) => r.min !== null);
+// `some`: visits where the membership is cheapest at one gym or more (the union).
+// `every`: visits where it's cheapest at every gym (the overlap), or null if none.
+// Assumes each gym's winning visits are one unbroken run, which holds for the
+// shapes of plan here (soc cost rises steadily; memberships are flat).
+export function overallRange(data, tf, gyms = data.gyms) {
+  const all = gyms.map((g) => socRange(data, g, tf));
+  const ranges = all.filter((r) => r.min !== null);
   if (!ranges.length) return null;
-  return {
+  const some = {
     min: Math.min(...ranges.map((r) => r.min)),
     max: Math.max(...ranges.map((r) => r.max)),
     capped: ranges.some((r) => r.capped),
   };
+  let every = null;
+  if (ranges.length === all.length) {
+    const min = Math.max(...ranges.map((r) => r.min));
+    const max = Math.min(...ranges.map((r) => r.max));
+    if (min <= max) every = { min, max, capped: ranges.every((r) => r.capped) };
+  }
+  return { some, every };
 }
 
 export const casualPlan = (gym) => gym.plans.find((p) => p.kind === "casual");

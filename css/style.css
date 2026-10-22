@@ -127,6 +127,57 @@ button.danger { color: #b3261e; }
   margin-bottom: 12px;
 }
 .sentence select { max-width: 100%; }
+.gym-pick {
+  flex-basis: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px 3px 8px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  user-select: none;
+}
+.chip input { margin: 0; accent-color: var(--accent); }
+.chip:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.chip:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 1px; }
+.chip-actions { font-size: 0.85rem; color: var(--muted); margin-left: 4px; }
+
+.calc-options { flex-basis: 100%; font-size: 0.9rem; }
+.calc-options summary {
+  cursor: pointer;
+  color: var(--muted);
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.calc-options summary::-webkit-details-marker { display: none; }
+.calc-options summary::after { content: "▾"; font-size: 0.8em; transition: transform 0.15s; }
+.calc-options[open] summary::after { transform: rotate(180deg); }
+.calc-options summary span { color: var(--ink); font-weight: 500; }
+.calc-options-body { padding: 8px 0 0; max-width: 420px; }
+.calc-options input[type="range"] { width: 100%; padding: 0; border: 0; background: none; accent-color: var(--accent); }
+.ticks { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--muted); margin: -2px 0 6px; }
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
 .result p:last-child { margin-bottom: 0; }
 .result strong { color: var(--accent); }
 
@@ -189,6 +240,9 @@ table.plans { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
 .plans tr.best td { background: var(--accent-soft); }
 .plans tr.best td.num { font-weight: 600; color: var(--accent); }
 .note { color: var(--muted); font-size: 0.8rem; }
+.cost { display: inline-flex; flex-direction: column; align-items: flex-end; }
+.cost .per { color: var(--muted); font-size: 0.75rem; font-weight: 400; }
+.plans tr.excluded td { opacity: 0.5; }
 .source { font-size: 0.8rem; white-space: nowrap; }
 
 .notes { margin: 0 0 8px; padding-left: 18px; font-size: 0.9rem; }

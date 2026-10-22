@@ -34,7 +34,8 @@ export function planPrice(plan) {
     case "casual":
       return `${price} / visit`;
     case "pack":
-      return `${price} / ${plan.visits} visits${plan.expiry ? `, expires after ${period(plan.expiry)}` : ""}`;
+      return `${price} / ${plan.visits} visits (${money((Number(plan.price) || 0) / Math.max(1, Number(plan.visits) || 1))} each)` +
+        (plan.expiry ? `, expires after ${period(plan.expiry)}` : "");
     case "prepaid":
       return `${price} upfront for ${period(plan.length)}`;
     case "recurring": {
