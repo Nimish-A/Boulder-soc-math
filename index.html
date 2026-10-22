@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BoulderSoc Maths</title>
+  <meta name="description" content="Is the $10 UNSW BoulderSoc membership worth it? Compare soc entry prices with each Sydney gym's own passes and memberships.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="./">BoulderSoc maths</a>
+    <nav>
+      <a href="./" aria-current="page">Calculator</a>
+      <a href="settings.html">Settings</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="calc" aria-labelledby="calc-title">
+      <h1 id="calc-title">Is the <span id="fee">$10</span> BoulderSoc membership worth it?</h1>
+      <form id="calc-form" class="sentence" onsubmit="return false">
+        <span>I climb</span>
+        <input id="freq-n" type="number" min="0" step="1" inputmode="numeric" aria-label="Visits">
+        <span>times a</span>
+        <select id="freq-unit" aria-label="Per">
+          <option value="week">week</option>
+          <option value="month">month</option>
+          <option value="year">year</option>
+        </select>
+        <span>over</span>
+        <input id="tf-n" type="number" min="1" step="1" inputmode="numeric" aria-label="Timeframe length">
+        <select id="tf-unit" aria-label="Timeframe unit">
+          <option value="week">week(s)</option>
+          <option value="month">month(s)</option>
+          <option value="year">year(s)</option>
+        </select>
+        <span>at</span>
+        <select id="gym" aria-label="Gym"></select>
+      </form>
+      <div id="result" class="result" aria-live="polite"></div>
+    </section>
+
+    <section aria-labelledby="gyms-title">
+      <h2 id="gyms-title">Gyms</h2>
+      <p class="muted" id="gyms-sub"></p>
+      <div id="gyms"></div>
+    </section>
+
+    <section aria-labelledby="perks-title">
+      <h2 id="perks-title">Stores &amp; food</h2>
+      <p class="muted">Member discounts. Contact BoulderSoc for how to claim them. Add your expected yearly spend in <a href="settings.html#perks">Settings</a> to count the savings in the maths.</p>
+      <ul id="perks" class="perks"></ul>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="footer"></footer>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
